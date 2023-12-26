@@ -3,7 +3,7 @@ import 'package:chatt/widgets/my-button.dart';
 import 'package:chatt/screens/signin.dart';
 import 'package:chatt/screens/signup.dart';
 class WelcomeScreen extends StatefulWidget {
-  static const String screenRoute = 'welcome_screen';
+ static const String screenRoute = 'welcome_screen';
 
   const WelcomeScreen({Key? key}) : super(key: key);
 

@@ -10,12 +10,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  carousel_slider: ^4.0.0
+
+  convex_bottom_bar: ^3.2.0
+  table_calendar: ^3.0.1
+  image_picker: ^0.8.9
+  url_launcher: ^6.0.5 # Or the appropriate version
+  get: ^4.1.4
+  provider: ^6.0.5
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.15.3
   firebase_core: ^2.24.2
   cloud_firestore: ^4.13.6
 assets:
     - images/logo.png
+    - images/monasaba.png
+
 
 
 

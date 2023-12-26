@@ -3,7 +3,6 @@ import 'package:chatt/widgets/my-button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:chatt/screens/chat.dart';
 
-
 class RegistrationScreen extends StatefulWidget {
   static const String screenRoute = 'registration_screen';
 
@@ -18,26 +17,63 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   late String email;
   late String password;
+  late String username;
+  late String phoneNumber;
+  late String confirmPassword;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              height: 180,
-              child: Image.asset('images/logo.png'),
-            ),
-            SizedBox(height: 50),
+            // Removed the Container with the logo
+            SizedBox(height: 20),
             TextField(
               textAlign: TextAlign.center,
               onChanged: (value) {
-              email = value;
-
+                username = value;
+              },
+              decoration: InputDecoration(
+                hintText: 'Enter your Username',
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 20,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color.fromARGB(255, 91, 165, 129),
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.blue,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 8),
+            TextField(
+              textAlign: TextAlign.center,
+              onChanged: (value) {
+                email = value;
               },
               decoration: InputDecoration(
                 hintText: 'Enter your Email',
@@ -52,7 +88,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: Colors.orange,
+                    color: Color.fromARGB(255, 91, 165, 129),
                     width: 1,
                   ),
                   borderRadius: BorderRadius.all(
@@ -78,7 +114,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 password = value;
               },
               decoration: InputDecoration(
-                hintText: 'Enter your password',
+                hintText: 'Enter your Password',
                 contentPadding: EdgeInsets.symmetric(
                   vertical: 10,
                   horizontal: 20,
@@ -90,7 +126,82 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: Colors.orange,
+                    color: Color.fromARGB(255, 91, 165, 129),
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.blue,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 8),
+            TextField(
+              obscureText: true,
+              textAlign: TextAlign.center,
+              onChanged: (value) {
+                confirmPassword = value;
+              },
+              decoration: InputDecoration(
+                hintText: 'Confirm your Password',
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 20,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color.fromARGB(255, 91, 165, 129),
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.blue,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 8),
+            TextField(
+              textAlign: TextAlign.center,
+              onChanged: (value) {
+                phoneNumber = value;
+              },
+              decoration: InputDecoration(
+                hintText: 'Enter your Phone Number',
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 20,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color.fromARGB(255, 91, 165, 129),
                     width: 1,
                   ),
                   borderRadius: BorderRadius.all(
@@ -111,19 +222,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             SizedBox(height: 10),
             MyButton(
               color: Colors.blue[800]!,
-              title: 'register',
-              onPressed: () async  {
-               // print(email);
-               // print(password);
-              try {
-                final newUser = await _auth.createUserWithEmailAndPassword(
-                email: email, password: password);
-                Navigator.pushNamed(context, ChatScreen.screenRoute);
+              title: 'Register',
+              onPressed: () async {
+                try {
+                  final newUser = await _auth.createUserWithEmailAndPassword(
+                      email: email, password: password);
+                  Navigator.pushNamed(context, ChatScreen.screenRoute);
                 } catch (e) {
-                    print(e);
-                  }
+                  print(e);
+                }
               },
-            )
+            ),
           ],
         ),
       ),

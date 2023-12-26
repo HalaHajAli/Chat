@@ -51,7 +51,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow[900],
+        backgroundColor: Color.fromARGB(255, 91, 165, 129),
         title: Row(
           children: [
             Image.asset('images/logo.png', height: 25),
@@ -114,7 +114,7 @@ class _ChatScreenState extends State<ChatScreen> {
               decoration: BoxDecoration(
                 border: Border(
                   top: BorderSide(
-                    color: Colors.orange,
+                    color: Color.fromARGB(255, 91, 165, 129),
                     width: 2,
                   ),
                 ),
@@ -183,7 +183,7 @@ class MessageLine extends StatelessWidget{
 
         children:[
           Text ('$sender',
-          style: TextStyle(fontSize: 12, color:Colors.yellow[900]),
+          style: TextStyle(fontSize: 12, color:Color.fromARGB(255, 91, 165, 129)),
           ),
     Material(
       elevation: 5,

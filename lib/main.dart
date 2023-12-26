@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:chatt/screens/chat.dart';
 import 'package:chatt/screens/signup.dart';
 import 'package:chatt/screens/signin.dart';
+import 'package:chatt/screens/login1.dart';
 import 'screens/welcome.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:chatt/screens/try.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-
+import 'package:chatt/screens/CartProvider.dart';
+import 'package:chatt/screens/favorites_provider.dart';
+import 'package:provider/provider.dart'; // Import the provider package
+import 'package:get/get.dart';
 void main() async  {
   WidgetsFlutterBinding.ensureInitialized();
    var firebaseOptions = FirebaseOptions(
@@ -23,25 +27,34 @@ void main() async  {
 }
 
 class MyApp extends StatelessWidget {
+
   final _auth=FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+
+    return MultiProvider(
+       providers: [
+        ChangeNotifierProvider(create: (context) => FavoritesProvider()),
+        ChangeNotifierProvider(create: (context) => CartProvider()), // Provide your CartProvider
+        // You can add more providers if needed
+      ],
+      child: GetMaterialApp(
       title: 'MessageMe app',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-     // home: ChatScreen(),
-     initialRoute: _auth.currentUser!=null
-     ? ChatScreen.screenRoute
-     :WelcomeScreen.screenRoute,
+     home: RegistrationScreen(),
+    // initialRoute: _auth.currentUser!=null
+     //? ChatScreen.screenRoute
+     //:WelcomeScreen.screenRoute,
 
       routes: {
-          WelcomeScreen.screenRoute: (context) => WelcomeScreen(),
+          WelcomePage.screenRoute: (context) => WelcomePage(),
           SignInScreen.screenRoute: (context) => SignInScreen(),
           RegistrationScreen.screenRoute: (context) => RegistrationScreen(),
           ChatScreen.screenRoute: (context) => ChatScreen(),
         }
+      )
     );
   }
 }
