@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:chatt/screens/chat.dart';
 import 'package:chatt/screens/signup.dart';
 import 'package:chatt/screens/signin.dart';
+import 'package:chatt/screens/servicepage.dart';
+import 'package:chatt/screens/detailes.dart';
+
 import 'package:chatt/screens/login1.dart';
 import 'screens/welcome.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -43,7 +46,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-     home: RegistrationScreen(),
+      home: YourPage(), // Provide the user type here
+
     // initialRoute: _auth.currentUser!=null
      //? ChatScreen.screenRoute
      //:WelcomeScreen.screenRoute,
